@@ -1,0 +1,165 @@
+{
+   "templateSet": {
+      "template": [
+         {
+            "variable": {
+               "_name": "CLASS_NAME",
+               "_expression": "className()",
+               "_defaultValue": "",
+               "_alwaysStopAt": "false"
+            },
+            "context": {
+               "option": {
+                  "_name": "JAVA_CODE",
+                  "_value": "true"
+               }
+            },
+            "_name": "log",
+            "_value": "private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger($CLASS_NAME$.class);\n",
+            "_description": "Instantiates logger",
+            "_toReformat": "false",
+            "_toShortenFQNames": "true"
+         },
+         {
+            "variable": {
+               "_name": "TYPE",
+               "_expression": "className()",
+               "_defaultValue": "",
+               "_alwaysStopAt": "false"
+            },
+            "context": {
+               "option": {
+                  "_name": "JAVA_CODE",
+                  "_value": "true"
+               }
+            },
+            "_name": "equal",
+            "_value": "@Override\npublic boolean equals(Object object)\n{\n    if (object == this)\n    {\n        return true;\n    }\n    \n    if (object == null || object.getClass() != getClass())\n    {\n        return false;\n    }\n    \n    $TYPE$ other = ($TYPE$) object;\n    \n    return java.util.Objects.equals($END$\n}\n    \n    ",
+            "_description": "Object equals() override template",
+            "_toReformat": "false",
+            "_toShortenFQNames": "true"
+         },
+         {
+            "context": {
+               "option": {
+                  "_name": "JAVA_CODE",
+                  "_value": "true"
+               }
+            },
+            "_name": "hash",
+            "_value": "@Override\npublic int hashCode()\n{\n    return java.util.Objects.hash($END$\n}",
+            "_description": "ObjecthashCode() override template",
+            "_toReformat": "false",
+            "_toShortenFQNames": "true"
+         },
+         {
+            "variable": {
+               "_name": "CLASS_NAME",
+               "_expression": "className()",
+               "_defaultValue": "",
+               "_alwaysStopAt": "false"
+            },
+            "context": {
+               "option": {
+                  "_name": "JAVA_CODE",
+                  "_value": "true"
+               }
+            },
+            "_name": "tostr",
+            "_value": "@Override\npublic String toString()\n{\n    return String.format(\"$CLASS_NAME$ [$END$]\");\n}",
+            "_description": "Object toString() override template",
+            "_toReformat": "false",
+            "_toShortenFQNames": "true"
+         },
+         {
+            "variable": {
+               "_name": "COLOR",
+               "_expression": "groovyScript('[\"deepskyblue\", \"lawngreen\", \"gold\", \"magenta\", \"orangered\", \"yellow\", \"red\", \"cyan\"].sort{new Random()}?.take(1)[0]')",
+               "_defaultValue": "",
+               "_alwaysStopAt": "true"
+            },
+            "context": {
+               "option": {
+                  "_name": "JAVA_CODE",
+                  "_value": "true"
+               }
+            },
+            "_name": "border",
+            "_value": ".setStyle(\"-fx-border-width: 2px; -fx-border-color: $COLOR$;\");",
+            "_toReformat": "false",
+            "_toShortenFQNames": "true"
+         },
+         {
+            "variable": {
+               "_name": "ARGUMENTS",
+               "_expression": "groovyScript(\"_1.collect { 'java.util.Objects.requireNonNull(' + it + ', \\\"' + it + ' must not be null\\\");' }.join('\\\\n') \", methodParameters())",
+               "_defaultValue": "",
+               "_alwaysStopAt": "false"
+            },
+            "context": {
+               "option": {
+                  "_name": "JAVA_STATEMENT",
+                  "_value": "true"
+               }
+            },
+            "_name": "rnn",
+            "_value": "$ARGUMENTS$",
+            "_description": "Insert Objects.requireNonNull for each argument of enclosing method.",
+            "_toReformat": "false",
+            "_toShortenFQNames": "true"
+         },
+         {
+            "variable": {
+               "_name": "ARGUMENTS",
+               "_expression": "",
+               "_defaultValue": "",
+               "_alwaysStopAt": "false"
+            },
+            "context": {
+               "option": {
+                  "_name": "JAVA_STATEMENT",
+                  "_value": "true"
+               }
+            },
+            "_name": "construct",
+            "_value": "$ARGUMENTS$",
+            "_description": "Set constructor arguments.",
+            "_toReformat": "false",
+            "_toShortenFQNames": "true"
+         },
+         {
+            "context": {
+               "option": {
+                  "_name": "JAVA_STATEMENT",
+                  "_value": "true"
+               }
+            },
+            "_name": "iae",
+            "_value": "throw new IllegalArgumentException(\"$END$\");",
+            "_description": "IllegalArgumentException",
+            "_toReformat": "false",
+            "_toShortenFQNames": "true"
+         },
+         {
+            "variable": {
+               "_name": "ARGUMENTS",
+               "_expression": "groovyScript(\"_1.collect { 'logger.debug(\\\"' + it + ': \\\" + ' + it + ');' }.join('\\\\n') \", methodParameters())",
+               "_defaultValue": "",
+               "_alwaysStopAt": "true"
+            },
+            "context": {
+               "option": {
+                  "_name": "JAVA_CODE",
+                  "_value": "true"
+               }
+            },
+            "_name": "darg",
+            "_value": "$ARGUMENTS$",
+            "_description": "Prints each argument to the function.",
+            "_toReformat": "false",
+            "_toShortenFQNames": "true"
+         }
+      ],
+      "_group": "java"
+   }
+}
