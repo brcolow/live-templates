@@ -1,0 +1,54 @@
+<templateSet group="java">
+  <template name="log" value="private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger($CLASS_NAME$.class);&#10;" description="Instantiates logger" toReformat="false" toShortenFQNames="true">
+    <variable name="CLASS_NAME" expression="className()" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="equal" value="@Override&#10;public boolean equals(Object object)&#10;{&#10;    if (object == this)&#10;    {&#10;        return true;&#10;    }&#10;    &#10;    if (object == null || object.getClass() != getClass())&#10;    {&#10;        return false;&#10;    }&#10;    &#10;    $TYPE$ other = ($TYPE$) object;&#10;    &#10;    return java.util.Objects.equals($END$&#10;}&#10;    &#10;    " description="Object equals() override template" toReformat="false" toShortenFQNames="true">
+    <variable name="TYPE" expression="className()" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="hash" value="@Override&#10;public int hashCode()&#10;{&#10;    return java.util.Objects.hash($END$&#10;}" description="ObjecthashCode() override template" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="tostr" value="@Override&#10;public String toString()&#10;{&#10;    return String.format(&quot;$CLASS_NAME$ [$END$]&quot;);&#10;}" description="Object toString() override template" toReformat="false" toShortenFQNames="true">
+    <variable name="CLASS_NAME" expression="className()" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="border" value=".setStyle(&quot;-fx-border-width: 2px; -fx-border-color: $COLOR$;&quot;);" toReformat="false" toShortenFQNames="true">
+    <variable name="COLOR" expression="groovyScript('[&quot;deepskyblue&quot;, &quot;lawngreen&quot;, &quot;gold&quot;, &quot;magenta&quot;, &quot;orangered&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;cyan&quot;].sort{new Random()}?.take(1)[0]')" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="rnn" value="$ARGUMENTS$" description="Insert Objects.requireNonNull for each argument of enclosing method." toReformat="false" toShortenFQNames="true">
+    <variable name="ARGUMENTS" expression="groovyScript(&quot;_1.collect { 'java.util.Objects.requireNonNull(' + it + ', \&quot;' + it + ' must not be null\&quot;);' }.join('\\n') &quot;, methodParameters())" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="JAVA_STATEMENT" value="true" />
+    </context>
+  </template>
+  <template name="construct" value="$ARGUMENTS$" description="Set constructor arguments." toReformat="false" toShortenFQNames="true">
+    <variable name="ARGUMENTS" expression="" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="JAVA_STATEMENT" value="true" />
+    </context>
+  </template>
+  <template name="iae" value="throw new IllegalArgumentException(&quot;$END$&quot;);" description="IllegalArgumentException" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_STATEMENT" value="true" />
+    </context>
+  </template>
+  <template name="darg" value="$ARGUMENTS$" description="Prints each argument to the function." toReformat="false" toShortenFQNames="true">
+    <variable name="ARGUMENTS" expression="groovyScript(&quot;_1.collect { 'logger.debug(\&quot;' + it + ': \&quot; + ' + it + ');' }.join('\\n') &quot;, methodParameters())" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+</templateSet>
